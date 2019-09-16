@@ -1,6 +1,7 @@
 package com.zubair.burritofinder.network
 
 import com.zubair.burritofinder.model.Restaurant
+import com.zubair.burritofinder.model.Results
 import io.reactivex.Single
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -40,7 +41,7 @@ class RestaurantApi {
         location : String,
         keyword : String,
         key : String
-    ) : Single<List<Restaurant>>
+    ) : Single<Results>
             = service.getRestaurants(location, 50000, type, keyword, key)
 }
 

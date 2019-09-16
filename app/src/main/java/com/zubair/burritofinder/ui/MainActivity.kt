@@ -20,25 +20,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         permissionRequester = PermissionRequester(WeakReference(this))
+        if (!permissionRequester.hasPermissions()) {
+            permissionRequester.requestPermissions()
+        } else {
+            if(savedInstanceState == null) getLocation()
+        }
     }
 
     private fun createLocationFragment(commonCommonLocation: CommonLocation?){
-        // you would have to pass the commonLocation
-
         val fragment = BurritoRestaurantListFragment.newInstance(
             commonCommonLocation?.latitude!!, commonCommonLocation!!.longitude)
         supportFragmentManager.beginTransaction().
             add(R.id.main_activity_container, fragment).
             commit()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        if (!permissionRequester.hasPermissions()) {
-            permissionRequester.requestPermissions()
-        } else {
-            getLocation()
-        }
     }
 
     private fun getLocation(){
@@ -53,15 +47,15 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         for (grantResult in grantResults) {
             if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "No permission granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.permisson_not_granted), Toast.LENGTH_LONG).show()
                 finish()
                 return
             }
-            else{
-                getLocation()
-            }
+            else getLocation()
         }
     }
+
+
 
 }
 
