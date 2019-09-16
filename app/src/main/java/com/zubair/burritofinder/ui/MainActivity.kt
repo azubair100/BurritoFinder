@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         val fragment = BurritoRestaurantListFragment.newInstance(
             commonCommonLocation?.latitude!!, commonCommonLocation!!.longitude)
         supportFragmentManager.beginTransaction().
-            add(R.id.main_activity_container, MapFragment()).
+            add(R.id.main_activity_container, fragment).
             commit()
     }
 

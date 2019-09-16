@@ -10,12 +10,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.zubair.burritofinder.R
+import com.zubair.burritofinder.model.Restaurant
 import com.zubair.burritofinder.view_model.ListViewModel
 import kotlinx.android.synthetic.main.fragment_burrito_restaurant_list.*
 
 class BurritoRestaurantListFragment : Fragment() {
     private lateinit var viewModel: ListViewModel
-    private val restaurantAdapter = RestaurantListAdapter(arrayListOf())
+    private val restaurantAdapter = RestaurantListAdapter(arrayListOf()) { restaurant : Restaurant -> goToMap(restaurant) }
 
     private var latitude: Double? = null
     private var longitude: Double? = null
@@ -29,6 +30,19 @@ class BurritoRestaurantListFragment : Fragment() {
             fragment.arguments = args
             return fragment
         }
+    }
+
+    private fun goToMap(restaurant : Restaurant){
+        Log.d("test", restaurant.geometry.toString())
+        val fragment = MapFragment.newInstance(restaurant.name!!,
+            restaurant.vicinity!!,
+            restaurant.geometry?.commonLocation!!.latitude,
+            restaurant.geometry?.commonLocation!!.longitude)
+
+        activity?.supportFragmentManager?.
+            beginTransaction()?.
+            replace(R.id.main_activity_container, fragment)?.
+            addToBackStack("list_fragment")?.commit()
     }
 
     private fun observeViewModel(){

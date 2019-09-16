@@ -8,7 +8,7 @@ import com.zubair.burritofinder.R
 import com.zubair.burritofinder.model.Restaurant
 import kotlinx.android.synthetic.main.item_restaurant.view.*
 
-class RestaurantListAdapter(var restaurants: ArrayList<Restaurant>) : RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>() {
+class RestaurantListAdapter(var restaurants: ArrayList<Restaurant>, val clickListener: (Restaurant) -> Unit) : RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>() {
 
     fun refreshRestaurantList(newRestaurants: List<Restaurant>){
         restaurants.clear()
@@ -23,18 +23,14 @@ class RestaurantListAdapter(var restaurants: ArrayList<Restaurant>) : RecyclerVi
     override fun getItemCount() = restaurants.size
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
-        holder.bind(restaurants[position])
+        holder.bind(restaurants[position], clickListener)
     }
 
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view){
-
-        private val restaurantName = view.restaurant_row_name
-        private val restaurantDescription = view.restaurant_row_description
-
-        fun bind(restaurant: Restaurant){
-            restaurantName.text = restaurant.name ?: ""
-            restaurantDescription.text = restaurant.vicinity
-
+        fun bind(restaurant: Restaurant, clickListener: (Restaurant) -> Unit){
+            itemView.restaurant_row_name.text = restaurant.name ?: ""
+            itemView.restaurant_row_description.text = restaurant.vicinity
+            itemView.setOnClickListener { clickListener(restaurant)}
         }
     }
 }
