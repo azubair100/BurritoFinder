@@ -20,5 +20,10 @@
     Once you have your key (it starts with "AIza"), replace the "google_maps_key"
     string in this file.
     -->
-    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBb_KeTZvx-Qv3oP3O1RwPHJqoECXcFo7g</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAVy6UM0gvzeyYnGfIjR4pmLA8i22QWLTE</string>
 </resources>
+<!--
+
+
+    https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=
+    -33.8670522,151.1957362&radius=1500&type=restaurant&keyword=cruise&key=AIzaSyBb_KeTZvx-Qv3oP3O1RwPHJqoECXcFo7g-->

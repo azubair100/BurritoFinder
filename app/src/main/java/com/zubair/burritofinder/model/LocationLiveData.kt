@@ -3,16 +3,14 @@ package com.zubair.burritofinder.model
 import android.Manifest.permission
 import android.content.Context
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LiveData
 import com.google.android.gms.location.*
-import com.zubair.burritofinder.model.CommonLocation
 import io.reactivex.annotations.NonNull
 
 class LocationLiveData(private val context: Context) :
-    LiveData<CommonLocation?>() {
+    LiveData<Location?>() {
     private var fusedLocationProviderClient: FusedLocationProviderClient? =
         null
 
@@ -62,7 +60,7 @@ class LocationLiveData(private val context: Context) :
                 val longitude = newLocation.longitude
                 val accuracy = newLocation.accuracy
                 val location =
-                    CommonLocation(latitude, longitude, accuracy)
+                    Location(latitude, longitude, accuracy)
                 value = location
             }
         }
@@ -70,11 +68,11 @@ class LocationLiveData(private val context: Context) :
 }
 
 
-/*public class LocationLiveData extends LiveData<CommonLocation> {
+/*public class LocationLiveData extends LiveData<Location> {
     private static final double LATITUDE = 51.649836;
     private static final double LONGITUDE = -0.401486;
     private static final float ACCURACY = 5f;
-    private static final CommonLocation LOCATION = new CommonLocation(LATITUDE, LONGITUDE, ACCURACY);
+    private static final Location LOCATION = new Location(LATITUDE, LONGITUDE, ACCURACY);
 
     public LocationLiveData(Context context) {
         //NO-OP
