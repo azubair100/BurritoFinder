@@ -31,7 +31,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private var listener: OnFragmentInteractionListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,31 +55,11 @@ class MapFragment : Fragment(), OnMapReadyCallback{
             map_view.onResume()
             map_view.getMapAsync(this)
         }
+        activity?.title = "Name Change"
     }
 
-    fun onButtonPressed(uri: Uri) {
-        listener?.onFragmentInteraction(uri)
-    }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-       /* if (context is OnFragmentInteractionListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement OnFragmentInteractionListener")
-        }*/
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
-    }
-
-    interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(uri: Uri)
-    }
-
-   /* companion object {
+    companion object {
 
         // TODO: Rename and change types and number of parameters
         @JvmStatic
@@ -91,5 +70,5 @@ class MapFragment : Fragment(), OnMapReadyCallback{
                     putString(ARG_PARAM2, param2)
                 }
             }
-    }*/
+    }
 }

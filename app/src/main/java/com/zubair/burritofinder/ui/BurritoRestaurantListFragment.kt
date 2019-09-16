@@ -78,6 +78,7 @@ class BurritoRestaurantListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = restaurantAdapter
         }
+
         observeViewModel()
     }
 
