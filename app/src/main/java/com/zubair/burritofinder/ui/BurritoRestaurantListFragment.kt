@@ -20,29 +20,19 @@ import kotlinx.android.synthetic.main.fragment_burrito_restaurant_list.*
 class BurritoRestaurantListFragment : Fragment() {
     lateinit var viewModel: ListViewModel
     private val restaurantAdapter = RestaurantListAdapter(arrayListOf())
-    private var commonLocation = CommonLocation(0.0, 0.0)
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
-        val liveData: LiveData<CommonLocation?> = LocationLiveData(context)
-        liveData.observe(this,
-            Observer { commonLocation -> updateLocation(commonLocation!!) })
+    private var latitude: Double? = null
+    private var longitude: Double? = null
 
-    }
-
-    private fun updateLocation(location : CommonLocation){
-        commonLocation.latitude = location.latitude
-        commonLocation.longitude = location.longitude
-
-        Log.d("test in onAttach", "location.latitude " + commonLocation.latitude + "---"  + commonLocation.longitude)
-        viewModel.fetchRestaurants("restaurant",
-            commonLocation.latitude.toString() +"," + commonLocation.longitude,
-            "burrito",
-            getString(R.string.google_places_api_key)
-        )
-        Log.d("test in updateLocation", "location.latitude " + location.latitude + " --- "  + location.longitude)
-        observeViewModel()
+    companion object {
+        fun newInstance(latitude: Double, longitude: Double): BurritoRestaurantListFragment {
+            val fragment = BurritoRestaurantListFragment()
+            val args = Bundle()
+            args.putDouble("latitude", latitude)
+            args.putDouble("longitude", longitude)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
     private fun observeViewModel(){
@@ -71,7 +61,18 @@ class BurritoRestaurantListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            latitude = it.getDouble("latitude")
+            longitude = it.getDouble("longitude")
+        }
 
+        viewModel = ViewModelProviders.of(this).get(ListViewModel::class.java)
+        viewModel.fetchRestaurants("restaurant",
+            latitude.toString() +"," + longitude,
+            "burrito",
+            getString(R.string.google_places_api_key)
+        )
         //pass commonLocation here
     }
 
