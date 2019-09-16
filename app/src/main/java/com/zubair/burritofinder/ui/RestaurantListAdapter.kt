@@ -1,6 +1,5 @@
 package com.zubair.burritofinder.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +8,11 @@ import com.zubair.burritofinder.R
 import com.zubair.burritofinder.model.Restaurant
 import kotlinx.android.synthetic.main.item_restaurant.view.*
 
-class RestaurantListAdapter(var restuarants: ArrayList<Restaurant>) : RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>() {
+class RestaurantListAdapter(var restaurants: ArrayList<Restaurant>) : RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder>() {
 
     fun refreshRestaurantList(newRestaurants: List<Restaurant>){
-        restuarants.clear()
-        restuarants.addAll(newRestaurants)
+        restaurants.clear()
+        restaurants.addAll(newRestaurants)
         notifyDataSetChanged()
     }
 
@@ -21,10 +20,10 @@ class RestaurantListAdapter(var restuarants: ArrayList<Restaurant>) : RecyclerVi
         LayoutInflater.from(parentView.context).inflate(R.layout.item_restaurant, parentView, false)
     )
 
-    override fun getItemCount() = restuarants.size
+    override fun getItemCount() = restaurants.size
 
     override fun onBindViewHolder(holder: RestaurantViewHolder, position: Int) {
-        holder.bind(restuarants[position])
+        holder.bind(restaurants[position])
     }
 
     class RestaurantViewHolder(view: View) : RecyclerView.ViewHolder(view){
