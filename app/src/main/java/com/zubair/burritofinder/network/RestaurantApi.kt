@@ -35,7 +35,13 @@ class RestaurantApi {
         return okHttpClientBuilder.build()
     }
 
-    fun getRestaurants() : Single<List<Restaurant>> = service.getRestaurants("", "", 2, "", "")
+    fun getRestaurants(
+        type : String,
+        location : String,
+        keyword : String,
+        key : String
+    ) : Single<List<Restaurant>>
+            = service.getRestaurants(location, 50000, type, keyword, key)
 }
 
 

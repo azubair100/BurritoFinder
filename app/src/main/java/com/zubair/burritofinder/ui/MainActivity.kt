@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import com.zubair.burritofinder.model.Location
+import com.zubair.burritofinder.model.CommonLocation
 import com.zubair.burritofinder.model.LocationLiveData
 import com.zubair.burritofinder.R
 import com.zubair.burritofinder.util.PermissionRequester
@@ -22,9 +22,11 @@ class MainActivity : AppCompatActivity() {
         permissionRequester = PermissionRequester(WeakReference(this))
     }
 
-    private fun createLocationFragment(commonLocation: Location?){
-        Toast.makeText(this, "Permission Granted " + commonLocation?.latitude + " " + commonLocation?.longitude, Toast.LENGTH_LONG).show()
-
+    private fun createLocationFragment(commonCommonLocation: CommonLocation?){
+        // you would have to pass the commonLocation
+        supportFragmentManager.beginTransaction().
+            add(R.id.main_activity_container, BurritoRestaurantListFragment()).
+            commit()
     }
 
     override fun onStart() {
@@ -32,10 +34,10 @@ class MainActivity : AppCompatActivity() {
         if (!permissionRequester.hasPermissions()) {
             permissionRequester.requestPermissions()
         } else {
-            val liveData: LiveData<Location?> =
+            val liveData: LiveData<CommonLocation?> =
                 LocationLiveData(this)
             liveData.observe(this,
-                Observer<Location?> { commonLocation -> createLocationFragment(commonLocation) })
+                Observer { commonLocation -> createLocationFragment(commonLocation) })
         }
     }
 
@@ -49,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
-        createLocationFragment(Location(4.5, 5.4))
+        createLocationFragment(CommonLocation(4.5, 5.4))
     }
 
 }

@@ -17,12 +17,11 @@ class ListViewModel : ViewModel(){
     private val disposable = CompositeDisposable()
     private val restaurantApi: RestaurantApi = RestaurantApi()
 
-    fun refresh(){ fetchRestaurants() }
 
-    private fun fetchRestaurants(){
+    fun fetchRestaurants(type : String, location : String, keyword : String, key : String){
         loading.value = true
         disposable.add(
-            restaurantApi.getRestaurants()
+            restaurantApi.getRestaurants(type, location, keyword, key)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object: DisposableSingleObserver<List<Restaurant>>() {

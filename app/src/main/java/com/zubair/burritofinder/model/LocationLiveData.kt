@@ -3,6 +3,7 @@ package com.zubair.burritofinder.model
 import android.Manifest.permission
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LiveData
@@ -10,7 +11,7 @@ import com.google.android.gms.location.*
 import io.reactivex.annotations.NonNull
 
 class LocationLiveData(private val context: Context) :
-    LiveData<Location?>() {
+    LiveData<CommonLocation?>() {
     private var fusedLocationProviderClient: FusedLocationProviderClient? =
         null
 
@@ -55,12 +56,10 @@ class LocationLiveData(private val context: Context) :
     private val locationCallback: LocationCallback =
         object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
-                val newLocation: Location = locationResult.lastLocation
-                val latitude = newLocation.latitude
-                val longitude = newLocation.longitude
-                val accuracy = newLocation.accuracy
-                val location =
-                    Location(latitude, longitude, accuracy)
+                val newCommonLocation: Location? = locationResult.lastLocation
+                val latitude = newCommonLocation!!.latitude
+                val longitude = newCommonLocation!!.longitude
+                val location = CommonLocation(latitude, longitude)
                 value = location
             }
         }
@@ -68,11 +67,11 @@ class LocationLiveData(private val context: Context) :
 }
 
 
-/*public class LocationLiveData extends LiveData<Location> {
+/*public class LocationLiveData extends LiveData<CommonLocation> {
     private static final double LATITUDE = 51.649836;
     private static final double LONGITUDE = -0.401486;
     private static final float ACCURACY = 5f;
-    private static final Location LOCATION = new Location(LATITUDE, LONGITUDE, ACCURACY);
+    private static final CommonLocation LOCATION = new CommonLocation(LATITUDE, LONGITUDE, ACCURACY);
 
     public LocationLiveData(Context context) {
         //NO-OP
