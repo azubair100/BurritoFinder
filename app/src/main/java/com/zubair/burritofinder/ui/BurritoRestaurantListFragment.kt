@@ -14,7 +14,7 @@ import com.zubair.burritofinder.view_model.ListViewModel
 import kotlinx.android.synthetic.main.fragment_burrito_restaurant_list.*
 
 class BurritoRestaurantListFragment : Fragment() {
-    lateinit var viewModel: ListViewModel
+    private lateinit var viewModel: ListViewModel
     private val restaurantAdapter = RestaurantListAdapter(arrayListOf())
 
     private var latitude: Double? = null
@@ -73,7 +73,6 @@ class BurritoRestaurantListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("count", "count is in RestaurantListFragment " + restaurantAdapter.restuarants.size)
 
         restaurant_list.apply {
             layoutManager = LinearLayoutManager(context)

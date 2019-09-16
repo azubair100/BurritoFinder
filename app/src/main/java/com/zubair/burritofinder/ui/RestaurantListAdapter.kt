@@ -14,7 +14,6 @@ class RestaurantListAdapter(var restuarants: ArrayList<Restaurant>) : RecyclerVi
     fun refreshRestaurantList(newRestaurants: List<Restaurant>){
         restuarants.clear()
         restuarants.addAll(newRestaurants)
-        Log.d("count", "count is in RestaurantListAdapter " + restuarants.size)
         notifyDataSetChanged()
     }
 
