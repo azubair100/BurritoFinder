@@ -34,6 +34,7 @@ class ListViewModel : ViewModel(){
                     override fun onError(e: Throwable) {
                         restaurantLoadError.value = true
                         loading.value = false
+                        Log.e("count_Error", e.localizedMessage)
                     }
 
                 })

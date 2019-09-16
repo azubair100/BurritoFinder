@@ -24,8 +24,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun createLocationFragment(commonCommonLocation: CommonLocation?){
         // you would have to pass the commonLocation
+
+        val fragment = BurritoRestaurantListFragment.newInstance(
+            commonCommonLocation?.latitude!!, commonCommonLocation!!.longitude)
         supportFragmentManager.beginTransaction().
-            add(R.id.main_activity_container, BurritoRestaurantListFragment()).
+            add(R.id.main_activity_container, fragment).
             commit()
     }
 
@@ -34,11 +37,15 @@ class MainActivity : AppCompatActivity() {
         if (!permissionRequester.hasPermissions()) {
             permissionRequester.requestPermissions()
         } else {
-            val liveData: LiveData<CommonLocation?> =
-                LocationLiveData(this)
-            liveData.observe(this,
-                Observer { commonLocation -> createLocationFragment(commonLocation) })
+            getLocation()
         }
+    }
+
+    private fun getLocation(){
+        val liveData: LiveData<CommonLocation?> =
+            LocationLiveData(this)
+        liveData.observe(this,
+            Observer { commonLocation -> createLocationFragment(commonLocation) })
     }
 
 
@@ -50,8 +57,12 @@ class MainActivity : AppCompatActivity() {
                 finish()
                 return
             }
+            else{
+                getLocation()
+            }
         }
-        createLocationFragment(CommonLocation(4.5, 5.4))
     }
 
 }
+
+
