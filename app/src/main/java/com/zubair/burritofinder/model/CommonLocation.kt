@@ -1,4 +1,4 @@
-package com.zubair.burritofinder
+package com.zubair.burritofinder.model
 
 data class CommonLocation(
     val longitude: Double,

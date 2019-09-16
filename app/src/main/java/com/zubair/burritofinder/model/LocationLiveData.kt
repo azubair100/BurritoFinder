@@ -1,4 +1,4 @@
-package com.zubair.burritofinder
+package com.zubair.burritofinder.model
 
 import android.Manifest.permission
 import android.content.Context
@@ -8,6 +8,7 @@ import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LiveData
 import com.google.android.gms.location.*
+import com.zubair.burritofinder.model.CommonLocation
 import io.reactivex.annotations.NonNull
 
 class LocationLiveData(private val context: Context) :
@@ -60,7 +61,8 @@ class LocationLiveData(private val context: Context) :
                 val latitude = newLocation.latitude
                 val longitude = newLocation.longitude
                 val accuracy = newLocation.accuracy
-                val location = CommonLocation(latitude, longitude, accuracy)
+                val location =
+                    CommonLocation(latitude, longitude, accuracy)
                 value = location
             }
         }

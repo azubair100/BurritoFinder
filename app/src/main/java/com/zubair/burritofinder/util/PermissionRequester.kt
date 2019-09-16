@@ -1,4 +1,4 @@
-package com.zubair.burritofinder
+package com.zubair.burritofinder.util
 
 import android.Manifest.permission
 import android.app.Activity

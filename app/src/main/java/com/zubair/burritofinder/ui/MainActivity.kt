@@ -1,4 +1,4 @@
-package com.zubair.burritofinder
+package com.zubair.burritofinder.ui
 
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -6,6 +6,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import com.zubair.burritofinder.model.CommonLocation
+import com.zubair.burritofinder.model.LocationLiveData
+import com.zubair.burritofinder.R
+import com.zubair.burritofinder.util.PermissionRequester
 import java.lang.ref.WeakReference
 
 class MainActivity : AppCompatActivity() {
@@ -28,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         if (!permissionRequester.hasPermissions()) {
             permissionRequester.requestPermissions()
         } else {
-            val liveData: LiveData<CommonLocation?> = LocationLiveData(this)
+            val liveData: LiveData<CommonLocation?> =
+                LocationLiveData(this)
             liveData.observe(this,
                 Observer<CommonLocation?> { commonLocation -> createLocationFragment(commonLocation) })
         }
