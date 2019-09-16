@@ -15,7 +15,7 @@ class LocationLiveData(private val context: Context) :
     private var fusedLocationProviderClient: FusedLocationProviderClient? =
         null
 
-    protected override fun onActive() {
+    override fun onActive() {
         super.onActive()
         if (ActivityCompat.checkSelfPermission(
                 context,
@@ -47,7 +47,7 @@ class LocationLiveData(private val context: Context) :
         return fusedLocationProviderClient
     }
 
-    protected override fun onInactive() {
+    override fun onInactive() {
         if (fusedLocationProviderClient != null) {
             fusedLocationProviderClient!!.removeLocationUpdates(locationCallback)
         }
@@ -65,21 +65,3 @@ class LocationLiveData(private val context: Context) :
         }
 
 }
-
-
-/*public class LocationLiveData extends LiveData<CommonLocation> {
-    private static final double LATITUDE = 51.649836;
-    private static final double LONGITUDE = -0.401486;
-    private static final float ACCURACY = 5f;
-    private static final CommonLocation LOCATION = new CommonLocation(LATITUDE, LONGITUDE, ACCURACY);
-
-    public LocationLiveData(Context context) {
-        //NO-OP
-    }
-
-    @Override
-    protected void onActive() {
-        super.onActive();
-        setValue(LOCATION);
-    }
-}*/

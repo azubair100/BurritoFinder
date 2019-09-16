@@ -1,6 +1,5 @@
 package com.zubair.burritofinder.network
 
-import com.zubair.burritofinder.model.Restaurant
 import com.zubair.burritofinder.model.Results
 import io.reactivex.Single
 import okhttp3.OkHttpClient
@@ -42,8 +41,5 @@ class RestaurantApi {
         keyword : String,
         key : String
     ) : Single<Results>
-            = service.getRestaurants(location, 50000, type, keyword, key)
+            = service.getRestaurants(location, 5000, type, keyword, key)
 }
-
-
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=1500&type=burrito&key=AIzaSyBb_KeTZvx-Qv3oP3O1RwPHJqoECXcFo7g

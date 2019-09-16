@@ -13,7 +13,6 @@ import com.zubair.burritofinder.util.PermissionRequester
 import java.lang.ref.WeakReference
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var permissionRequester: PermissionRequester
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +40,6 @@ class MainActivity : AppCompatActivity() {
         liveData.observe(this,
             Observer { commonLocation -> createLocationFragment(commonLocation) })
     }
-
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)

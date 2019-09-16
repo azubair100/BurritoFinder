@@ -47,7 +47,6 @@ class BurritoRestaurantListFragment : Fragment() {
 
     private fun observeViewModel(){
         viewModel.restaurants?.observe(this, Observer { restaurants ->
-            //if countries is not null, it will be passed in this block as it
             restaurants?.let {
                 restaurant_list.visibility = View.VISIBLE
                 restaurantAdapter.refreshRestaurantList(it)
@@ -87,7 +86,6 @@ class BurritoRestaurantListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         restaurant_list.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = restaurantAdapter
@@ -96,16 +94,9 @@ class BurritoRestaurantListFragment : Fragment() {
         observeViewModel()
     }
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_burrito_restaurant_list, container, false)
 
-
-
-    override fun onDetach() {
-        super.onDetach()
-    }
 }

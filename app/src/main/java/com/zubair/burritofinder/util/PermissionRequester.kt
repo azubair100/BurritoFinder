@@ -14,8 +14,6 @@ class PermissionRequester(private val activityWeakReference: WeakReference<Activ
     )
 
 
-
-
     internal fun hasPermissions(): Boolean {
         val activity = activityWeakReference!!.get()
         if (activity != null) {

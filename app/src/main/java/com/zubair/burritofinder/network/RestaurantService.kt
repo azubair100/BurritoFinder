@@ -1,6 +1,5 @@
 package com.zubair.burritofinder.network
 
-import com.zubair.burritofinder.model.Restaurant
 import com.zubair.burritofinder.model.Results
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -16,18 +15,3 @@ interface RestaurantService {
         @Query("key") key: String): Single<Results>
 
 }
-
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?
-// commonLocation=40.730610,-73.935242&radius=1500&type=restaurant&keyword=burrito&key=AIzaSyAVy6UM0gvzeyYnGfIjR4pmLA8i22QWLTE
-
-
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?
-// location=40.730610,-73.935242&
-// radius=1500&
-// type=burrito&key=AIzaSyAVy6UM0gvzeyYnGfIjR4pmLA8i22QWLTE
-
-
-//https://maps.googleapis.com/maps/api/place/nearbysearch/json?
-// location=40.758896,-73.985130&
-// radius=50000&
-// type=restaurant&keyword=burrito&key=AIzaSyAVy6UM0gvzeyYnGfIjR4pmLA8i22QWLTE

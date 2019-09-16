@@ -17,9 +17,7 @@ class MapFragment : Fragment(), OnMapReadyCallback{
     override fun onMapReady(googleMap: GoogleMap?) {
         MapsInitializer.initialize(context)
         googleMap?.mapType = GoogleMap.MAP_TYPE_NORMAL
-//        googleMap?.addMarker(MarkerOptions().position(LatLng(40.730610,-73.935242)).title("Test NYC").snippet("Testing with hardcoded latlng"))
-        googleMap?.addMarker(MarkerOptions().position(LatLng(latitude!!, longitude!!)).title("Test NYC").snippet("Testing with hardcoded latlng"))
-//        var cameraSize = CameraPosition.builder().target(LatLng(40.730610,-73.935242)).zoom(16f).bearing(0f).tilt(45f).build()
+        googleMap?.addMarker(MarkerOptions().position(LatLng(latitude!!, longitude!!)).title(name).snippet(street))
         var cameraSize = CameraPosition.builder().target(LatLng(latitude!!, longitude!!)).zoom(16f).bearing(0f).tilt(45f).build()
         googleMap?.moveCamera(CameraUpdateFactory.newCameraPosition(cameraSize))
     }
