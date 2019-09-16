@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 return
             }
         }
-        createLocationFragment(Location(4.5, 5.4, 4.5f))
+        createLocationFragment(Location(4.5, 5.4))
     }
 
 }
