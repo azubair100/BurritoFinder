@@ -6,7 +6,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class RestaurantApi {
-   @Inject
+    @Inject
     lateinit var service : RestaurantService
 
     init { DaggerApiComponent.create().inject(this) }

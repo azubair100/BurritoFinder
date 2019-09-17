@@ -1,5 +1,6 @@
 package com.zubair.burritofinder.di
 
+import com.zubair.burritofinder.network.RestaurantApi
 import com.zubair.burritofinder.network.RestaurantService
 import dagger.Module
 import dagger.Provides
@@ -16,7 +17,7 @@ class ApiModule {
     private val BASE_URL = "https://maps.googleapis.com/maps/api/"
 
     @Provides
-    fun provideRestaurantApi() : RestaurantService{
+    fun provideRestaurantService() : RestaurantService{
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(provideOkHttpClient())
@@ -25,6 +26,10 @@ class ApiModule {
             .build()
             .create(RestaurantService::class.java)
     }
+
+
+    @Provides
+    fun provideRestaurantApi(): RestaurantApi = RestaurantApi()
 
     private fun provideOkHttpClient(): OkHttpClient {
         val interceptor =
