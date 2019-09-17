@@ -1,51 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/restaurant_row_container"
+    android:id="@+id/card_view_row"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:paddingBottom="10dp"
-    android:paddingEnd="16dp"
-    android:paddingStart="16dp"
-    android:paddingTop="10dp">
-
-    <ImageView
-        android:id="@+id/restaurant_row_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/burrito_icon"
-        android:paddingEnd="10dp"
-        tools:ignore="RtlSymmetry" />
-
+    android:padding="5dp"
+    android:layout_margin="3dp"
+    app:cardCornerRadius="5dp"
+    app:cardElevation="2dp">
 
     <LinearLayout
-        android:id="@+id/restaurant_row_name_desc_container"
-        android:layout_width="0dp"
+        android:id="@+id/restaurant_row_container"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="10dp">
 
-        <TextView
-            android:id="@+id/restaurant_row_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:autoSizeTextType="uniform"
-            tools:text="Restaurant Name"/>
+        <ImageView
+            android:id="@+id/restaurant_row_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:paddingEnd="10dp"
+            android:src="@drawable/burrito_icon"
+            tools:ignore="RtlSymmetry" />
 
-        <TextView
-            android:id="@+id/restaurant_row_description"
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/restaurant_row_name_desc_container"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:autoSizeTextType="uniform"
-            tools:text="Description"/>
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/restaurant_row_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:text="Restaurant Name" />
+
+            <TextView
+                android:id="@+id/restaurant_row_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
+                android:textSize="15sp"
+                tools:text="Description" />
+        </LinearLayout>
+
     </LinearLayout>
 
-
-</LinearLayout>
+</androidx.cardview.widget.CardView>
