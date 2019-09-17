@@ -54,7 +54,10 @@ class BurritoRestaurantListFragment : Fragment() {
         })
 
         viewModel.restaurantLoadError?.observe(this, Observer { isError ->
-            isError?.let { list_error_text.visibility = if(it) View.VISIBLE else View.GONE }
+            isError?.let {
+                list_error_text.visibility = if(it) View.VISIBLE else View.GONE
+                list_error_text.text = getString(R.string.loading_error_text)
+            }
         })
 
         viewModel.loading?.observe(this, Observer { isLoading ->

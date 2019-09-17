@@ -7,4 +7,5 @@
     <string name="google_places_api_key">AIzaSyAVy6UM0gvzeyYnGfIjR4pmLA8i22QWLTE</string>
     <string name="burrito_search_text">burrito</string>
     <string name="permisson_not_granted">You have not granted the app the necessary permissions</string>
+    <string name="loading_error_text">Something went wrong, please try again later.</string>
 </resources>
