@@ -37,7 +37,7 @@ class BurritoRestaurantListFragment : Fragment() {
         val fragment = MapFragment.newInstance(restaurant.name!!,
             restaurant.vicinity!!,
             restaurant.geometry?.commonLocation!!.latitude,
-            restaurant.geometry?.commonLocation!!.longitude)
+            restaurant.geometry.commonLocation.longitude)
 
         activity?.supportFragmentManager?.
             beginTransaction()?.

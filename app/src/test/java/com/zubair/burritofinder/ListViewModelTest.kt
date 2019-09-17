@@ -19,7 +19,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito
+import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
@@ -32,8 +32,7 @@ class ListViewModelTest {
     lateinit var restaurantApi: RestaurantApi
 
     @InjectMocks
-    lateinit var listViewModel: ListViewModel
-
+    val listViewModel = ListViewModel()
 
     private var testSingle : Single<Results>? = null
 
@@ -41,6 +40,7 @@ class ListViewModelTest {
 
     @Test
     fun getRestaurantsSuccess(){
+        restaurantApi = RestaurantApi()
         val restaurant = Restaurant(
             Geometry(CommonLocation(40.7127753, -74.0059728)),
             "City View Inn",
@@ -50,7 +50,7 @@ class ListViewModelTest {
         val restaurantList = arrayListOf(restaurant)
         testSingle = Single.just(Results(restaurantList))
 
-        Mockito.`when`(
+        `when`(
             restaurantApi.getRestaurants(
                 "restaurant",
                 "35.51753, -71.3521",
@@ -64,6 +64,25 @@ class ListViewModelTest {
 
         Assert.assertEquals(1, listViewModel.restaurants.value?.size)
         Assert.assertEquals(false, listViewModel.restaurantLoadError.value)
+        Assert.assertEquals(false, listViewModel.loading.value)
+    }
+
+    @Test
+    fun getRestaurantsFail(){
+        testSingle = Single.error(Throwable())
+        `when`(
+            restaurantApi.getRestaurants(
+                "restaurant",
+                "35.51753, -71.3521",
+                "burrito",
+                "Azoasdd")).thenReturn(testSingle)
+
+        listViewModel.fetchRestaurants( "restaurant",
+            "35.51753, -71.3521",
+            "burrito",
+            "Azoasdd")
+
+        Assert.assertEquals(true, listViewModel.restaurantLoadError.value)
         Assert.assertEquals(false, listViewModel.loading.value)
     }
 
